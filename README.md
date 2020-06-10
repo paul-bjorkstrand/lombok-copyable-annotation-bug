@@ -4,7 +4,17 @@ This is a minimal example of the problem.
 
 The tl;dr version:
 
-> If an annotation does not specify at least these three targets: field, parameter, and method, lombok will cause a compiler error when building.
+> If an annotation does not specify at least these three targets: field, parameter, and method, lombok will cause a compiler error when the resulting (generated) code compiles.
+
+## Issue details
+
+### How to reproduce this
+
+Run the following to build the project, and see the errors that show up.
+
+```
+mvn clean install
+```
 
 ### What is happening
 
@@ -30,14 +40,14 @@ Ideally, Lombok would be able to as many `ElementType` values as possible, depen
 
 ### Example
 
-In my example code, I would expect the code to build and produce the following delombok'd code:
+In my [all-in-one example code], I would expect the code to build and produce the following delombok'd code:
 
 ```java
 package lombokbug;
 
 import lombok.Generated;
 
-public class CopyableAnnotationsBug {
+public class CopyableAnnotationsBugAllInOne {
     @MyAnnotation1
     @MyAnnotation2
     @MyAnnotation3
@@ -64,3 +74,8 @@ public class CopyableAnnotationsBug {
 
 Here, `@MyAnnotation1` is applied only to the parameters of the constructor and setter, while `@MyAnnotation2` is applied only to the getter method.
 
+[all-in-one example code]: src/main/java/lombokbug/CopyableAnnotationsBugAllInOne.java
+
+### Wrap-up
+
+The [all-in-one example][all-in-one example code] shows all the problems at once, but the other example classes demonstrate each individual problem. These class names start with the word `Tries`.

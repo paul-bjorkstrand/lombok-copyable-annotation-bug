@@ -7,5 +7,7 @@ import lombok.Getter;
 public class TriesToPutAnnotationOnGetterMethod {
   // This annotation should only be on fields and parameters
   // lombok tries to put this on the getter method
-  @Getter @MyAnnotation2 String test;
+  @Getter //
+  @MyAnnotation2
+  String test;
 }
